@@ -2,13 +2,12 @@ import './App.css';
 import io from 'socket.io-client'
 import {useEffect, useState} from "react";
 
-const socket = io.connect(process.env.REACT_APP_API_URL)
+const socket = io.connect("https://websocketcackend.herokuapp.com/")
 
 function App() {
     const [isOn, setIsOn] = useState(false)
 
     useEffect(() => {
-        console.log(process.env.REACT_APP_API_URL)
         socket.on("light_bulb_state_to_client", (data) => {
             console.log(data.light_bulb_is)
             setIsOn(data.light_bulb_is)
